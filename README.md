@@ -14,6 +14,21 @@ Arkaplanda aşağıdaki araçları kullanır:
 
 ---
 
+### 🐧 **Test Edilen Ortamlar**  
+| Ortam       | Durum                          |
+|-------------|--------------------------------|
+| Fedora      | Çalışıyor ✅                   |
+| Arch Linux  | Çalışıyor ✅                   |
+| Ubuntu      | Çalışmıyor ❌, Destek eklenecek |
+
+### 📡 **Test Edilen ISS'ler**  
+| Sağlayıcı    | Durum       |
+|--------------|-------------|
+| Türk Telekom | Çalışıyor ✅|
+| SuperOnline  | Çalışıyor ✅|
+
+---
+
 ## ⚠️ Yasal Uyarı
 
 Bu uygulamanın kullanımından doğan her türlü yasal sorumluluk kullanan kişiye aittir. Uygulama yalnızca eğitim ve araştırma amaçları ile yazılmış ve düzenlenmiş olup; bu uygulamayı bu şartlar altında kullanmak ya da kullanmamak kullanıcının kendi seçimidir. Açık kaynak kodlarının paylaşıldığı bu platformdaki düzenlenmiş bu proje, bilgi paylaşımı ve kodlama eğitimi amaçları ile yazılmış ve düzenlenmiştir.
@@ -23,21 +38,17 @@ Bu uygulamanın kullanımından doğan her türlü yasal sorumluluk kullanan ki�
 ## 📌 Notlar
 
 * **Ubuntu/Debian desteği (6 Eylül itibariyle) kaldırılmıştır.**
-  Bunun sebebi, `dnscrypt-proxy`’nin apt ile gelen sürümünün düzgün çalışmamasıdır.
-  Yakında GitHub’dan otomatik indirip kurulum yapan ayrı bir script eklenecektir.
-* Debian 13 için paket güncel olsa da betikte tüm apt tabanlı dağıtımlar aynı şekilde işlendiği için ayıramıyorum.
-* Her türlü **Pull Request**’e açığım. 👍
+  Bunun sebebi, `dnscrypt-proxy`’nin apt ile gelen sürümünün Fedora ve Arch'a kıyasla farklı çalışmasıdır.
+* Her türlü **Pull Request**’e açığım.
 
 ---
 
 ## 🚀 Kurulum
-
-### Fedora & Arch Linux
-
+GitHub üzerinden repo'yu uygun konuma klonlayın.
 ```bash
 curl -fsSL https://raw.githubusercontent.com/elrondforwin/byedpi-turkey/refs/heads/master/curl.sh | bash
 ```
-
+Kurulum betiğini çalıştırın.
 ```bash
 cd ~/.local/share/byedpi-turkey && ./kurulum.sh
 ```
@@ -45,7 +56,7 @@ cd ~/.local/share/byedpi-turkey && ./kurulum.sh
 ---
 
 ## 🗑️ Kaldırma
-
+Daha önce klonlanmış konumdan ``kaldir.sh`` betiğini çalıştırın.
 ```bash
 bash ~/.local/share/byedpi-turkey/kaldir.sh
 ```

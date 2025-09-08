@@ -18,14 +18,19 @@ if command -v dnf &> /dev/null; then
 
 if command -v apt &> /dev/null; then
     paketyonetici="apt install"
-    distro="debian/ubuntu tabanli"
+    if [[ $(grep "^ID_LIKE=" /etc/os-release) == "ubuntu debian" ]]; then
+      distro="ubuntu tabanli"
+    else
+      distro="debian tabanli"
+    fi
 fi
 
-if [ ! command -v pacman &> /dev/null && ! command -v dnf &> /dev/null && ! command -v apt &> /dev/null ]; then
+if ! command -v pacman &> /dev/null && ! command -v dnf &> /dev/null && ! command -v apt &> /dev/null; then
     echo "desteklenen paket yoneticileri arasinda paket yoneticiniz yok"
     echo "desteklenenler:"
     echo "    pacman"
     echo "    dnf"
+    echo "    apt"
     exit 1
 fi
 
@@ -38,7 +43,7 @@ fi
     echo "Lutfen evet ya da hayir olarak cevaplayin (ya da e/h)."
     echo "Tespit edilen distro tabani ${distro}"
     read -p "Bu dogru mu? (evet/hayir): " distrocevap
-    cevap=$(echo "$distrocevap" | tr '[:upper:]' '[:lower:]')
+    distrocevap=$(echo "$distrocevap" | tr '[:upper:]' '[:lower:]')
   done
 
   if [[ "$distrocevap" =~ ^(hayir|hayır|h)$ ]]; then
@@ -48,25 +53,29 @@ fi
     echo
     echo "1 - Arch Tabanlı (Arch, CachyOS, EndeavourOS, Manjaro vs.)"
     echo "2 - Fedora Tabanlı (Fedora, Nobara vs.)"
-    echo "3 - Debian/Ubuntu Tabanlı (Ubuntu, Debian, Mint, Zorin vs.)"
+    echo "3 - Ubuntu Tabanlı (Ubuntu, Mint, Zorin vs.)"
+    echo "4 - Debian Tabanlı (Debian vs.)"
     echo
 
-    read -p "Dağıtımınızın hangi taban olduğunu seçiniz (1/2/3): " manuelcevap
+    read -p "Dağıtımınızın hangi taban olduğunu seçiniz (1/2/3/4): " manuelcevap
 
-    while [[ ! "$manuelcevap" =~ ^(1|2|3)$ ]]; do
-      echo "Lütfen geçerli bir cevap giriniz (1, 2 veya 3)."
-      read -p "Dağıtımınızın hangi taban olduğunu seçiniz (1/2/3): " manuelcevap
+    while [[ ! "$manuelcevap" =~ ^(1|2|3|4)$ ]]; do
+      echo "Lütfen geçerli bir cevap giriniz (1, 2, 3 veya 4)."
+      read -p "Dağıtımınızın hangi taban olduğunu seçiniz (1/2/3/4): " manuelcevap
     done
 
     if [[ "$manuelcevap" == "1" ]]; then
       paketyonetici="pacman -S"
-      distro="arch tabanlı"
+      distro="arch tabanli"
     elif [[ "$manuelcevap" == "2" ]]; then
       paketyonetici="dnf install"
-      distro="fedora tabanlı"
+      distro="fedora tabanli"
     elif [[ "$manuelcevap" == "3" ]]; then
       paketyonetici="apt install"
-      distro="debian/ubuntu tabanlı"
+      distro="ubuntu tabanli"
+    elif [[ "$manuelcevap" == "4" ]]; then
+      paketyonetici="apt install"
+      distro="debian tabanli"
     fi
 
     echo "${distro} seçildi. Paket yükleme komutu: '${paketyonetici}' kullanılacak."
@@ -175,10 +184,12 @@ resolv-conf() {
 dnscrypt-config() {
   echo "dnscrypt-proxy configi kuruluyor..."
 
-  sudo cp configs/dnscrypt-proxy.toml /etc/dnscrypt-proxy/dnscrypt-proxy.toml
-
-  echo "dnscrypt-proxy'i dogru sekilde kullanmak icin masaustu ortaminizin ayarlarindan dns'i 127.0.0.1 olarak ayarlamalisiniz."
-  echo "nasil yapilacagini bilmiyorsaniz rehber videosuna bakabilirsiniz."
+  if [[ $distro =~ ^("arch tabanli"|"fedora tabanli")$ ]]; then
+    sudo cp configs/dnscrypt-proxy.toml /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+  elif [[ $distro =~ ^("ubuntu tabanli")$ ]]; then
+    echo "ubuntu icin config kuruluyor..."
+    sudo cp configs/dnscrypt-proxy-ubuntu.toml /etc/dnscrypt-proxy/dnscrypt-proxy.toml
+  fi
 
   echo "Servisler baslatiliyor."
   sudo systemctl enable dnscrypt-proxy.service
@@ -244,7 +255,7 @@ byedpi-aktiflestir() {
 
 acikla
 paket-yonetici-tanimla
-ubuntu-check
+# ubuntu-check
 # iss-check
 dnscrypt-check
 zenity-check

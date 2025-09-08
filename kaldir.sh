@@ -8,6 +8,12 @@ acikla() {
 
 emin-misin() {
     read -p "byedpictl'i kaldirmak istediginize emin misiniz? (evet/hayir): " emin
+    emin=$(echo "$emin" | tr '[:upper:]' '[:lower:]')
+    while [[ ! $emin =~ ^(evet|e|hayir|h|hayır)$ ]]; do
+      echo "lutfen gecerli bir cevap giriniz."
+      read -p "byedpictl'i kaldirmak istediginize emin misiniz? (evet/hayir): " emin
+      emin=$(echo "$emin" | tr '[:upper:]' '[:lower:]')
+    done
 }
 
 byedpictl-kaldir() {
@@ -29,21 +35,27 @@ byedpictl-kaldir() {
 
 paket-kaldirilacak-mi() {
     read -p "dnscrypt-proxy'i kaldirmak istiyor musunuz? (evet/hayir): " paketemin
+    paketemin=$(echo "$paketemin" | tr '[:upper:]' '[:lower:]')
+    while [[ ! $paketemin =~ ^(evet|e|hayir|h|hayır)$ ]]; do
+      echo "lutfen gecerli bir cevap giriniz."
+      read -p "dnscrypt-proxy'i kaldirmak istiyor musunuz? (evet/hayir): " paketemin
+      paketemin=$(echo "$paketemin" | tr '[:upper:]' '[:lower:]')
+    done
 }
 
 paket-yonetici-tanimla() {
   if [[ -f /bin/pacman ]]; then
-    paketyonetici="pacman -S"
+    paketyonetici="pacman -R"
     distro="arch tabanli"
   fi
 
   if [[ -f /bin/dnf ]]; then
-    paketyonetici="dnf install"
+    paketyonetici="dnf remove"
     distro="fedora tabanli"
   fi
 
   if [[ -f /bin/apt ]]; then
-    paketyonetici="apt install"
+    paketyonetici="apt remove"
     distro="debian/ubuntu tabanli"
   fi
 
@@ -56,7 +68,7 @@ paket-yonetici-tanimla() {
     echo "Lutfen evet ya da hayir olarak cevaplayin (ya da e/h)."
     echo "Tespit edilen distro tabani ${distro}"
     read -p "Bu dogru mu? (evet/hayir): " distrocevap
-    cevap=$(echo "$distrocevap" | tr '[:upper:]' '[:lower:]')
+    distrocevap=$(echo "$distrocevap" | tr '[:upper:]' '[:lower:]')
   done
 
   if [[ "$distrocevap" =~ ^(hayir|hayır|h)$ ]]; then

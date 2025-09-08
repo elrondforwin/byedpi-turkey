@@ -18,7 +18,7 @@ if command -v dnf &> /dev/null; then
 
 if command -v apt &> /dev/null; then
     paketyonetici="apt install"
-    if [[ $(grep "^ID_LIKE=" /etc/os-release) == "ubuntu debian" ]]; then
+    if [[ $(grep "^ID_LIKE=" /etc/os-release | cut -d= -f2 | tr -d '"') == "ubuntu debian" ]]; then
       distro="ubuntu tabanli"
     else
       distro="debian tabanli"

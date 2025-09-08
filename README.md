@@ -1,5 +1,8 @@
 # byedpi-turkey
 
+> [!WARNING]
+> ``ubuntu`` branch'ı gelecek Ubuntu güncellemeleri içindir. Şuanda kullanıma hazır değil ve tamamen geliştirme amacıyla var. Bu branch'teki yeni betik Ubuntu'ya uygun şekilde ``DNSCrypt-Proxy``'i konfigüre edip gerekli ayarları NetworkManager'a otomatik olarak uygulanmasını sağlayacak.
+
 Linux için kullanıcı dostu **GoodbyeDPI-Turkey alternatifi**.
 
 Arkaplanda aşağıdaki araçları kullanır:

@@ -219,9 +219,14 @@ dns-degis() {
     if [ -z "$aktif_ag" ]; then
         echo "aktif ag bulunamadi..."
     else
+    if [[ $distro = "ubuntu tabanli" ]]; then
+      nmcli connection modify "$aktif_ag" ipv4.dns "127.0.2.1"
+      echo "ubuntu kullandiginiz icin ${aktif_ag} aginin dns'i 127.0.2.1 olarak ayarlandi."
+    else
       nmcli connection modify "$aktif_ag" ipv4.dns "127.0.0.1"
-      nmcli connection modify "$aktif_ag" ipv4.ignore-auto-dns yes
       echo "${aktif_ag} aginin dns'i 127.0.0.1 olarak ayarlandi."
+    fi
+      nmcli connection modify "$aktif_ag" ipv4.ignore-auto-dns yes
       echo "network yeniden baslatiliyor..."
       nmcli connection down "$aktif_ag" 2>/dev/null
       sleep 1

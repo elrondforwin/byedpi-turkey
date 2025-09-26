@@ -16,7 +16,7 @@ Arkaplanda aşağıdaki araçları kullanır:
 |-------------|--------------------------------|
 | Fedora      | Çalışıyor ✅                   |
 | Arch Linux  | Çalışıyor ✅                   |
-| Ubuntu      | Çalışmıyor ❌, Destek eklenecek |
+| Ubuntu      | Çalışmıyor ❌ |
 
 ### 📡 **Test Edilen ISS'ler**  
 | Sağlayıcı    | Profil       | Durum |

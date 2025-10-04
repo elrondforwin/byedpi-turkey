@@ -1,12 +1,22 @@
 [Unit]
-Description=Start byedpictl service at boot
-Wants=network-online.target
+Description=Start byedpi service at boot
 After=network-online.target
+Wants=network-online.target
 
 [Service]
-Type=oneshot
+Type=forking
+
 ExecStart=/usr/local/bin/byedpictl tun start
-RemainAfterExit=yes
+ExecStop=/usr/local/bin/byedpictl tun stop
+ExecReload=/usr/local/bin/byedpictl tun restart
+
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

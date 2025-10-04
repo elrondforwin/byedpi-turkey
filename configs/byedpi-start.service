@@ -12,8 +12,6 @@ ExecReload=/usr/local/bin/byedpictl tun restart
 
 Restart=on-failure
 RestartSec=5
-StartLimitBurst=5
-StartLimitIntervalSec=60
 
 StandardOutput=journal
 StandardError=journal

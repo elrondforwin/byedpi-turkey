@@ -312,7 +312,7 @@ change_profile() {
 }
 
 case $1 in
-help)
+help|"")
   cmd_help
   ;;
 tun)

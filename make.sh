@@ -56,7 +56,7 @@ cmd_install () {
 
     printf -- "- Tunnel\n"
     curl -L --progress-bar -o "$BIN/hev-socks5-tunnel" \
-        "https://github.com/heiher/hev-socks5-tunnel/releases/download/2.12.0/hev-socks5-tunnel-linux-$target_arch"
+        "https://github.com/heiher/hev-socks5-tunnel/releases/download/2.13.0/hev-socks5-tunnel-linux-$target_arch"
     chmod +x "$BIN/hev-socks5-tunnel"
 
     printf "${C_BOLD}- Installing the main components${C_RESET}\n"

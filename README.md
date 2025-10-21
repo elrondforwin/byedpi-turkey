@@ -22,9 +22,11 @@ Arkaplanda aşağıdaki araçları kullanır:
 | Sağlayıcı    | Profil       | Durum |
 |--------------|-------------|--------------|
 | Türk Telekom | ``varsayilan-profil`` | Çalışıyor ✅
-| Türk Telekom | ``turk-telekom`` | Çalışıyor ✅
+| Türk Telekom | ``turk-telekom`` | Çalışıyor ✅, En sorunsuzu bu
+| Türk Telekom | ``varsayilan2`` | Çalışıyor ✅
 | SuperOnline  | ``varsayilan-profil`` | Çalışıyor ✅
-| SuperOnline  | ``turk-telekom`` | Test Edilmedi  ⚠️
+| SuperOnline  | ``turk-telekom`` | Test Edilmedi, Muhtemelen Çalışıyor  ⚠️
+| SuperOnline  | ``varsayilan2`` | Çalışıyor ✅
 
 ---
 

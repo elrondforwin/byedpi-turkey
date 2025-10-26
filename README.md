@@ -25,7 +25,7 @@ Arkaplanda aşağıdaki araçları kullanır:
 | Türk Telekom | ``turk-telekom`` | Çalışıyor ✅, En sorunsuzu bu
 | Türk Telekom | ``varsayilan2`` | Çalışıyor ✅
 | SuperOnline  | ``varsayilan-profil`` | Çalışıyor ✅
-| SuperOnline  | ``turk-telekom`` | Test Edilmedi, Muhtemelen Çalışıyor  ⚠️
+| SuperOnline  | ``turk-telekom`` | Çalışmıyor  ⚠️
 | SuperOnline  | ``varsayilan2`` | Çalışıyor ✅
 
 ---

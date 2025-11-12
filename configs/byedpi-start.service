@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 Type=forking
 
-ExecStart=/usr/local/bin/byedpictl tun start
+ExecStart=/usr/bin/bash -c '/usr/local/bin/byedpictl tun start'
 ExecStop=/usr/local/bin/byedpictl tun stop
 ExecReload=/usr/local/bin/byedpictl tun restart
 

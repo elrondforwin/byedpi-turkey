@@ -1,5 +1,10 @@
 # byedpi-turkey
 
+> [!NOTE]
+> Proje hala çalışsa da [Keift Zapret](https://github.com/keift/zapret), [Zapret GTK](https://github.com/Taygun86/zapret-gtk) ve [gecit](https://github.com/boratanrikulu/gecit
+) gibi projelerin yanında eksikleri ve bugları olan, üçü arasından en son tercih edilmesi gereken seçenek.
+
+
 Linux için kullanıcı dostu **GoodbyeDPI-Turkey alternatifi**.
 
 Arkaplanda aşağıdaki araçları kullanır:
